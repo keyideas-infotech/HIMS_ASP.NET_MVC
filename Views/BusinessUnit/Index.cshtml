@@ -1,0 +1,89 @@
+﻿@using MvcPaging;
+@model IPagedList<HIMS.Models.BusinessUnit>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="globalHeadingBdr">
+    <h2 class="globalHeading">Business Unit Listing</h2>
+</div>
+<div class="globalBody">
+<fieldset>
+    <legend></legend>
+    @{Html.RenderPartial("SearchBox", "BusinessUnit");}
+    <div style="width: 20%; float: left; margin-top: 8px;">
+        @Html.ActionLink("[+] Create Business Unit", "Create", null, new { @class = "btn primary" })
+    </div>
+    <div class="pagingContainer">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+    </div>
+    <table class="zebra-striped">
+        <tr>
+            <th>#</th>
+            <th>#</th>
+            <th>Business Unit
+            </th>
+            <th>Effective Date
+            </th>
+            <th>Status
+            </th>
+            <th>Full Name
+            </th>
+            <th>Nick Name
+            </th>
+            <th>Email Id
+            </th>
+            <th>Creation Date
+            </th>
+            <th>Modify Date
+            </th>
+            <th>#</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>                    
+                    <a href="@Url.Action("Edit", "BusinessUnit", new { id = item.BUS_ID })" title="Edit">
+                        <img src="~/images/icon_edit.png" /></a>
+                </td>
+                <td>                    
+                    <a href="@Url.Action("Details", "BusinessUnit", new { id = item.BUS_ID })" title="Details">
+                        <img src="~/images/iconZoom.png" /></a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BUSINESS_UNIT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EFF_DATE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EFF_STATUS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BUS_FULL_NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NAME2)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMAILID)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CREATION_DATE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MODIFY_DATE)
+                </td>
+                <td>
+                    <a href="javascript:void(0);" onclick="if(confirm('Are you sure want to delete?')){window.location.href='@Url.Action("Delete", "BusinessUnit", new { id = item.BUS_ID })'}" title="Delete">
+                        <img src="~/images/icon_delete.png" /></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</fieldset>
+    </div>

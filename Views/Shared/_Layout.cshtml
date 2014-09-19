@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Hospital Inventory Management System</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryCommon")
+</head>
+<body>
+    <div class="wraper">
+        @RenderSection("scripts", required: false)
+        <header>
+            <div class="headerPatternContainer">
+                <div class="headerShadowContainer">
+                    <div class="header_container">
+                        <div class="logo">
+                            <a href="~/Home/Index">Hospital Inventory Management System</a>
+                        </div>
+                        <div class="header-rightSection">
+                            <div class="loginNav">
+                                <ul>
+                                    @if (HIMS.Models.SiteIdentity.Roles == "admin" || HIMS.Models.SiteIdentity.Roles == "user")
+                                    {
+                                        <li>Welcome @HIMS.Models.SiteIdentity.Name</li>
+                                        <li><a href="javascript:void(0);" onclick="openlogin();">Account</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li>Welcome User</li>
+                                        <li><a href="~/Home/Register">Register</a></li>
+                                        <li><a href="~/Home/Login">Login</a></li>
+                                    }
+                                </ul>
+                            </div>
+                            <div id="dvLogin" class="logout-bx" style="position: absolute; right: 0px; display: none; z-index: 999;">
+                                <ul>
+                                    <li><a href="~/User/Home/Account">Account Setting</a></li>
+                                    <li><a href="#">demo</a></li>
+                                    <li><a href="~/Home/LogOff">logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <nav>
+                            <ul>
+                                @if (HIMS.Models.SiteIdentity.Roles == "admin")
+                                {
+                                    <li><a id="aHome" href="~/Admin/Home/Index">Dashboard</a>
+                                        <ul class="TopSubmenu">
+                                            <li><a href="#">Total Value/Current Inventory</a></li>
+                                            <li><a href="#">Alerts Overview</a></li>
+                                            <li><a href="#">Value of Products</a></li>
+                                            <li><a href="#">Number of Encounters</a></li>
+                                            <li><a href="#">Notice Board</a></li>
+                                        </ul>
+                                        <div class="arrow">&nbsp;</div>
+                                    </li>
+                                    <li><a id="aProcure" href="~/User/Home/Item">Procurement</a>
+                                        <ul class="TopSubmenu">
+                                            <li><a href="#">Manage Items/Vendors</a>
+                                                <ul class="SecondLavelmenu">
+                                                    <li><a href="#">Item Categories</a></li>
+                                                    <li><a href="#">Add/Update Items</a></li>
+                                                    <li><a href="#">Approve Items</a></li>
+                                                    <li><a href="#">Add/Update Vendors</a></li>
+                                                    <li><a href="#">Approve Vendors</a></li>
+
+                                                    <li><a href="#">Item Utilization Type</a></li>                                                    
+                                                    <li><a href="#">Manufacturer Setup</a></li>
+                                                    <li><a href="#">Item Hazardous Codes</a></li>
+                                                    <li><a href="#">Define Location</a></li>
+                                                </ul>
+                                                <div class="inner-arrow">&nbsp;</div>
+                                            </li>
+                                            <li><a href="#">Manage Ordering/Receiving</a>
+                                                <ul class="SecondLavelmenu">
+                                                    <li><a href="#">Add/Update POs</a></li>
+                                                    <li><a href="#">Approve POs</a></li>
+                                                    <li><a href="#">Add/Update Receipts</a></li>
+                                                </ul>
+                                                <div class="inner-arrow">&nbsp;</div>
+                                            </li>
+                                        </ul>
+                                        <div class="arrow">&nbsp;</div>
+                                    </li>    
+                                    <li><a id="aInventory" href="#">Inventory</a>
+                                        <ul class="TopSubmenu">
+                                            <li><a href="#">Manage Inventory Items</a>
+                                                <ul class="SecondLavelmenu">
+                                                    <li><a href="#">Current Inventory Items</a></li>
+                                                    <li><a href="#">Adjust Inventory</a></li>
+                                                    <li><a href="#">Define Storage Locations</a></li>
+                                                    <li><a href="#">Physical Inventory by Location</a></li>
+                                                    <li><a href="#">Review Transaction History</a></li>
+                                                </ul>
+                                                <div class="inner-arrow">&nbsp;</div>
+                                            </li>
+                                            <li><a href="#">Cart Ordering</a>
+                                                <ul class="SecondLavelmenu">
+                                                    <li><a href="#">Define Cart Information</a></li>
+                                                    <li><a href="#">Count Cart Orders</a></li>
+                                                    <li><a href="#">Approve Cart Orders</a></li>
+                                                </ul>
+                                                <div class="inner-arrow">&nbsp;</div>
+                                            </li>
+                                            <li><a href="#">Inventory Replenishment</a>
+                                                <ul class="SecondLavelmenu">
+                                                    <li><a href="#">Create Replen Requests</a></li>
+                                                    <li><a href="#">Review Replen Requests</a></li>
+                                                </ul>
+                                                <div class="inner-arrow">&nbsp;</div>
+                                            </li>
+                                        </ul>
+                                        <div class="arrow">&nbsp;</div>
+                                    </li>
+                                    <li><a id="aEncounters" href="#">Encounters</a>
+                                        <ul class="TopSubmenu">
+                                            <li><a href="#">Create New Encounter</a></li>
+                                            <li><a href="#">View/Edit Encounter</a></li>
+                                            <li><a href="#">View Archived Encounters</a></li>
+                                        </ul>
+                                        <div class="arrow">&nbsp;</div>
+                                    </li>
+                                    <li><a id="aInterfaces" href="#">Interfaces</a>
+                                        <ul class="TopSubmenu">
+                                            <li><a href="#">Item Interface</a></li>
+                                            <li><a href="#">Order Interface</a></li>
+                                            <li><a href="#">Patient  ADT Interface</a></li>
+                                        </ul>
+                                        <div class="arrow">&nbsp;</div>
+                                    </li>
+                                    <li><a id="aReporting" href="#">Reporting</a>
+                                        <ul class="TopSubmenu">
+                                            <li><a href="#">Encounters</a></li>
+                                            <li><a href="#">Inventory</a></li>
+                                            <li><a href="#">Procurement</a></li>
+                                            <li><a href="#">User Data</a></li>
+                                        </ul>
+                                        <div class="arrow">&nbsp;</div>
+                                    </li>
+                                    <li><a id="aSetup" href="#">Setup</a>
+                                        <ul class="TopSubmenu">
+                                            <li><a href="~/Admin/BusinessUnit">Business Unit Definition</a></li>
+                                            <li><a href="~/Admin/SiteUser">Add/Update Users</a></li>
+                                            <li><a href="~/Admin/UserBusinessUnit">Business Unit/User Association</a></li>
+                                            <li><a href="#">Role Definition</a></li>
+                                            <li><a href="#">Class Definition</a></li>
+                                            <li><a href="#">Class/Role Association</a></li>
+                                            <li><a href="#">Role/User Association</a></li>
+                                        </ul>
+                                        <div class="arrow">&nbsp;</div>
+                                    </li>                                                              
+                                }
+                                else if (HIMS.Models.SiteIdentity.Roles == "user")
+                                {
+                                    <li><a id="uHome" href="~/User/Home/Index">Dashboard</a></li>
+                                    <li><a id="uProcure" href="~/User/Home/Item">Procure</a></li>                                                  
+                                }
+                                else
+                                {
+                                    <li><a id="sHome" href="~/Home/Index">Home</a></li> 
+                                    <li><a id="sAbout" href="~/Home/About">About Us</a></li> 
+                                    <li><a id="sContact" href="~/Home/Contact">Contact Us</a></li>
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="body_mainMidContainer bgWhite mainMid">
+            <section>
+                <div class="mainContainer">
+                    <div class="TabContentBox">
+                        @RenderSection("featured", required: false)
+                        @RenderBody()
+                        <div class="clr"></div>
+                    </div>
+                </div>
+            </section>
+            <div class="clr"></div>
+        </div>
+        <footer>
+            <div class="footContainer">
+                <div class="copyright">&copy;@DateTime.Now.Year Hospital inventory management system All rights reserved. </div>
+                <div class="designDevelop"><a href="http://www.keyideasinfotech.com/web-design/" target="_blank">Designed</a> & <a href="http://www.keyideasinfotech.com/php-developers/" target="_blank">Developed</a> By : <a href="http://www.keyideasinfotech.com/" target="_blank">Keyideas</a> </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

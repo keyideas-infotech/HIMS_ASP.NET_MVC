@@ -1,0 +1,266 @@
+﻿@model HIMS.Models.BusinessUnit
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="globalHeadingBdr">
+    <h2 class="globalHeading">Add or Edit Business Unit</h2>
+</div>
+<div class="globalBody">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(false) 
+        <fieldset>
+            <legend></legend>
+            <table id="tblSet">
+                <tr>
+                    <td style="width: 50%">
+                        @Html.LabelFor(model => model.BUSINESS_UNIT)
+                    </td>
+                    <td style="width: 50%">
+                        @Html.EditorFor(model => model.BUSINESS_UNIT)
+                        @Html.ValidationMessageFor(model => model.BUSINESS_UNIT)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.EFF_DATE)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.EFF_DATE)
+                        <span style="padding-top: 5px;">
+                            @Html.DisplayFor(model => model.EFFF_DATE)  </span>
+                        @Html.HiddenFor(model => model.EFFF_DATE)
+                        @Html.ValidationMessageFor(model => model.EFF_DATE)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.EFF_STATUS)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.EFF_STATUS)
+                        @Html.ValidationMessageFor(model => model.EFF_STATUS)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.BUS_FULL_NAME)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.BUS_FULL_NAME)
+                        @Html.ValidationMessageFor(model => model.BUS_FULL_NAME)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.NAME2)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.NAME2)
+                        @Html.ValidationMessageFor(model => model.NAME2)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.ADDRESS1)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.ADDRESS1)
+                        @Html.ValidationMessageFor(model => model.ADDRESS1)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.ADDRESS2)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.ADDRESS2)
+                        @Html.ValidationMessageFor(model => model.ADDRESS2)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.ADDRESS3)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.ADDRESS3)
+                        @Html.ValidationMessageFor(model => model.ADDRESS3)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.CITY)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CITY)
+                        @Html.ValidationMessageFor(model => model.CITY)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.POSTAL)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.POSTAL)
+                        @Html.ValidationMessageFor(model => model.POSTAL)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.STATE)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.STATE)
+                        @Html.ValidationMessageFor(model => model.STATE)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.COUNTRY)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.COUNTRY)
+                        @Html.ValidationMessageFor(model => model.COUNTRY)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.PHONE)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.PHONE)
+                        @Html.ValidationMessageFor(model => model.PHONE)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.CONTACT_TYPE)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CONTACT_TYPE)
+                        @Html.ValidationMessageFor(model => model.CONTACT_TYPE)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.CONTACT_TITLE)
+                    </td>
+                    <td>
+                        @*@Html.EditorFor(model => model.CONTACT_TITLE)*@
+                        @Html.DropDownListFor(model => model.CONTACT_TITLE, new SelectList(Model.ContactTitleList, "value", "value", Model.CONTACT_TITLE), "-- Select Title --", new { @id = "CONTACT_TITLE" })
+                        @Html.ValidationMessageFor(model => model.CONTACT_TITLE)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.CONTACT_NAME)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CONTACT_NAME)
+                        @Html.ValidationMessageFor(model => model.CONTACT_NAME)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.EMAILID)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.EMAILID)
+                        @Html.ValidationMessageFor(model => model.EMAILID)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.PREFERRED_LANGUAGE)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.PREFERRED_LANGUAGE)
+                        @Html.ValidationMessageFor(model => model.PREFERRED_LANGUAGE)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.BUS_URL)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.BUS_URL)
+                        @Html.ValidationMessageFor(model => model.BUS_URL)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.BUS_COMMENTS)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.BUS_COMMENTS)
+                        @Html.ValidationMessageFor(model => model.BUS_COMMENTS)
+                    </td>
+                </tr>
+
+                @*<tr>
+                <td>
+                    @Html.LabelFor(model => model.BUS_UNIT_FIELD1)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.BUS_UNIT_FIELD1)
+                    @Html.ValidationMessageFor(model => model.BUS_UNIT_FIELD1)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.BUS_UNIT_FIELD2)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.BUS_UNIT_FIELD2)
+                    @Html.ValidationMessageFor(model => model.BUS_UNIT_FIELD2)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.BUS_UNIT_FIELD3)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.BUS_UNIT_FIELD3)
+                    @Html.ValidationMessageFor(model => model.BUS_UNIT_FIELD3)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.BUS_UNIT_FIELD4)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.BUS_UNIT_FIELD4)
+                    @Html.ValidationMessageFor(model => model.BUS_UNIT_FIELD4)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.BUS_UNIT_FIELD5)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.BUS_UNIT_FIELD5)
+                    @Html.ValidationMessageFor(model => model.BUS_UNIT_FIELD5)
+                </td>
+            </tr>*@
+            </table>
+            @Html.HiddenFor(model => model.BUS_ID)
+            @Html.HiddenFor(model => model.CREATION_DATE)
+            @Html.HiddenFor(model => model.MODIFY_DATE)
+            <p>
+                <input type="submit" value="Save" class="btn primary" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn" })
+            </p>
+
+        </fieldset>
+    }
+</div>
+
